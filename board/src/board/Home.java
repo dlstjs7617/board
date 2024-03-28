@@ -8,6 +8,13 @@ import java.util.Scanner;
 
 public class Home {
 	
+	private final int SIGN_UP = 1;
+	private final int LEAVE = 2;
+	private final int CREATE_POST = 3;
+	private final int MODIFY_POST = 4;
+	private final int DELETE_POST = 5;
+	
+	
 	private Scanner sc;
 	private Random ran;
 	private Map<User, ArrayList<Board>> map;
@@ -34,6 +41,22 @@ public class Home {
 			System.err.println("숫자만 입력");
 		}
 		return number;	
+	}
+	
+	private void selectMenu() {
+		int sel = inputNumber("선택");
+		
+		if(sel == SIGN_UP) {
+			
+		}else if(sel == LEAVE) {
+			
+		}else if(sel == CREATE_POST) {
+			
+		}else if(sel == MODIFY_POST) {
+			
+		}else if(sel == DELETE_POST) {
+			
+		}
 	}
 	
 	private void printMenu() {
