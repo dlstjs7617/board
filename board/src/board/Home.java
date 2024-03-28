@@ -10,11 +10,12 @@ public class Home {
 	
 	private Scanner sc;
 	private Random ran;
-	private Map<User, ArrayList<Board>> map = new HashMap<>();
+	private Map<User, ArrayList<Board>> map;
 	
 	public Home() {
 		sc = new Scanner(System.in);
 		ran = new Random();
+		map = new HashMap<>();
 	}
 	
 	private String inputString(String message) {
