@@ -36,6 +36,14 @@ public class Home {
 		return number;	
 	}
 	
+	private void printMenu() {
+		System.out.println("1.회원코드 발행");
+		System.out.println("2.탈퇴");
+		System.out.println("3.글작성");
+		System.out.println("4.글수정");
+		System.out.println("5.글삭제");
+	}
+	
 	public void run() {
 		
 	}
