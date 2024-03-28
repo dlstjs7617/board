@@ -1,5 +1,8 @@
 package board;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,6 +10,7 @@ public class Home {
 	
 	private Scanner sc;
 	private Random ran;
+	private Map<User, ArrayList<Board>> map = new HashMap<>();
 	
 	public Home() {
 		sc = new Scanner(System.in);
