@@ -43,6 +43,10 @@ public class Home {
 		return number;	
 	}
 	
+	private boolean isRun() {
+		return true;
+	}
+	
 	private void selectMenu() {
 		int sel = inputNumber("선택");
 		
@@ -68,7 +72,10 @@ public class Home {
 	}
 	
 	public void run() {
-		
+		while(isRun()) {
+			printMenu();
+			selectMenu();
+		}
 	}
 	
 	
