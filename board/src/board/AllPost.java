@@ -8,4 +8,9 @@ public class AllPost {
 	public static ArrayList<Post> getInstance(){
 		return post;
 	}
+	
+	
+	public int size() {
+		return post.size();
+	}
 }
