@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Home {
+public class Board {
 	
 	private final int SIGN_UP = 1;
 	private final int LEAVE = 2;
@@ -17,12 +17,18 @@ public class Home {
 	
 	private Scanner sc;
 	private Random ran;
-	private Map<User, ArrayList<Board>> map;
 	
-	public Home() {
+	private UserManager userManager;
+	private PostManager postManager;
+	
+	private Map<User, ArrayList<Post>> map;
+	
+	public Board() {
 		sc = new Scanner(System.in);
 		ran = new Random();
 		map = new HashMap<>();
+		userManager = UserManager.getInstance();
+		postManager = PostManager.getInstance();
 	}
 	
 	private String inputString(String message) {
@@ -47,11 +53,15 @@ public class Home {
 		return true;
 	}
 	
+	private void createUser() {
+		
+	}
+	
 	private void selectMenu() {
 		int sel = inputNumber("선택");
 		
 		if(sel == SIGN_UP) {
-			
+			createUser();
 		}else if(sel == LEAVE) {
 			
 		}else if(sel == CREATE_POST) {
