@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class Board {
 	
 	private final int SIGN_UP = 1;
@@ -27,7 +28,7 @@ public class Board {
 	
 	private int log;
 	
-	public Map<User, ArrayList<Post>> map;
+	public static Map<User, ArrayList<Post>> map;
 	
 	public Board() {
 		sc = new Scanner(System.in);
@@ -74,14 +75,26 @@ public class Board {
 		}
 		
 		map.put(user, new ArrayList<Post>());
-		System.out.println(user);
-		System.out.println(map);
 	}
 	
 	private void leave() {
 		String password = inputString("비밀번호 입력");
 		
-		userManager.deleteUser(log, password);
+		if(userManager.deleteUser(log, password)) {
+			log = -1;			
+		}
+	}
+	
+	private void login() {
+		String id = inputString("아이디");
+		String password = inputString("비밀번호");
+		
+		log = userManager.login(id,password);
+		if(log != -1) {
+			System.out.println("로그인 성공");
+		}else {
+			System.out.println("아이디/비밀번호 불일치");
+		}
 	}
 	
 	private void selectMenu() {
@@ -92,7 +105,7 @@ public class Board {
 		}else if(sel == LEAVE) {
 			leave();
 		}else if(sel == LOG_IN) {
-			
+			login();
 		}else if(sel == LOG_OUT) {
 			
 		}else if(sel == MODIFY_POST) {
@@ -116,6 +129,7 @@ public class Board {
 		while(isRun()) {
 			printMenu();
 			selectMenu();
+
 		}
 	}
 	
