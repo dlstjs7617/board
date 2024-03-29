@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 public class PostManager {	
 	
-	ArrayList<Post> posts;
+	private ArrayList<Post> posts;
 	
 	private PostManager() {
-		posts = new ArrayList<Post>();
 	}
 	
 	private static PostManager instance = new PostManager();
@@ -18,7 +17,10 @@ public class PostManager {
 	
 	
 	public void createPost(User user, Post post) {
-		posts.add(post);
-		Board.map.put(user, posts);
+		Board.map.get(user).add(post);
+	}
+	
+	public void updatePost(User user, Post post, int index) {
+		Board.map.get(user).set(index, post);
 	}
 }
