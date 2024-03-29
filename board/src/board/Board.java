@@ -21,7 +21,7 @@ public class Board {
 	private UserManager userManager;
 	private PostManager postManager;
 	
-	private Map<User, ArrayList<Post>> map;
+	private static Map<User, ArrayList<Post>> map;
 	
 	public Board() {
 		sc = new Scanner(System.in);
