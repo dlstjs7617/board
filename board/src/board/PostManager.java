@@ -17,8 +17,7 @@ public class PostManager {
 	}
 	
 	
-	public void createPost(User user, String title, String content) {
-		Post post = new Post(title, content, user.getName());
+	public void createPost(User user, Post post) {
 		posts.add(post);
 		Board.map.put(user, posts);
 	}
