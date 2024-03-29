@@ -24,7 +24,7 @@ public class Board {
 	
 	private UserManager userManager;
 	private PostManager postManager;
-	private Admin admin = Admin.getInstance();
+	private Admin admin;
 	
 	private int log;
 	
@@ -103,10 +103,11 @@ public class Board {
 	
 	private Post writePost(String name) {
 		sc.nextLine();
-		String title = sc.next();
+		String title = inputString("제목");
 		
 		boolean write = true;
 		String content = "";
+		System.out.println("내용 입력 (`)을 입력시 종료");
 		while(write) {
 			String temp = sc.nextLine();
 			
@@ -126,6 +127,21 @@ public class Board {
 		postManager.createPost(user, writePost(name));
 	}
 	
+	private void modifyPost() {
+		User user = userManager.readUser(log);
+		postManager.printPost(user);
+		
+		int idx = inputNumber("수정할 글번호 선택")-1;
+		if(idx < 0 || idx >= postManager.getPostsSize()) {
+			System.err.println("유효하지 않은 선택입니다");
+			return;
+		}
+		
+		Post post = writePost(user.getName());
+		
+		postManager.updatePost(user, post, idx);;
+	}
+	
 	private void selectMenu() {
 		int sel = inputNumber("선택");
 		
@@ -142,7 +158,7 @@ public class Board {
 			}else if(sel == CREATE_POST) {
 				createPost();
 			}else if(sel == MODIFY_POST) {
-				
+				modifyPost();
 			}else if(sel == DELETE_POST) {
 				
 			}
