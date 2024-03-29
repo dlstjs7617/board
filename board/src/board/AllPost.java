@@ -9,8 +9,4 @@ public class AllPost {
 		return post;
 	}
 	
-	
-	public int size() {
-		return post.size();
-	}
 }
