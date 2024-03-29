@@ -21,7 +21,7 @@ public class Board {
 	private UserManager userManager;
 	private PostManager postManager;
 	
-	private static Map<User, ArrayList<Post>> map;
+	public static Map<User, ArrayList<Post>> map;
 	
 	public Board() {
 		sc = new Scanner(System.in);
@@ -54,6 +54,17 @@ public class Board {
 	}
 	
 	private void createUser() {
+		String name = inputString("이름");
+		String id = inputString("아이디");
+		String password = inputString("비밀번호");
+		
+		User user = userManager.createUser(name, id, password);
+		
+		if(user == null) {
+			return;
+		}
+		
+		map.put(user, null);
 		
 	}
 	
