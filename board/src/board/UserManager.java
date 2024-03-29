@@ -36,4 +36,14 @@ public class UserManager {
 		return user;
 	}
 	
+	public boolean deleteUser(int log, String password) {
+		if(userList.get(log).getPassword().equals(password)) {
+			userList.remove(log);
+			return true;
+		}else {
+			System.out.println("비밀번호 불일치");
+			return false;
+		}
+	}
+	
 }
