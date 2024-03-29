@@ -4,13 +4,13 @@ public class Post {
 	
 	private String title;
 	private String content;
-	private int code;
+	private String name;
 	
 	
-	public Post(String title, String content, int code) {
+	public Post(String title, String content, String name) {
 		this.title = title;
 		this.content = content;
-		this.code = code;
+		this.name = name;
 	}
 	
 }
