@@ -30,6 +30,7 @@ public class Board {
 	private UserManager userManager;
 	private PostManager postManager;
 	private Admin admin;
+	private ArrayList<Post> post;
 	
 	private int log;
 	
@@ -41,6 +42,7 @@ public class Board {
 		map = new HashMap<>();
 		userManager = UserManager.getInstance();
 		postManager = PostManager.getInstance();
+		post = AllPost.getInstance();
 		admin = Admin.getInstance();
 		map.put(admin, new ArrayList<Post>());
 		log = -1;
