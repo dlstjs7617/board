@@ -32,9 +32,10 @@ public class PostManager {
 		Board.map.get(user).add(post);
 	}
 	
-	public void readPost(User user) {
+	public Post readPost(User user, int idx) {
 		posts = Board.map.get(user);
-		
+		Post result = posts.get(idx);
+		return result;
 	}
 	
 	public void updatePost(User user, Post post, int index) {
