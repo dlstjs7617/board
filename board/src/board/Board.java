@@ -10,9 +10,11 @@ public class Board {
 	
 	private final int SIGN_UP = 1;
 	private final int LEAVE = 2;
-	private final int CREATE_POST = 3;
-	private final int MODIFY_POST = 4;
-	private final int DELETE_POST = 5;
+	private final int LOG_IN = 3;
+	private final int LOG_OUT = 4;
+	private final int CREATE_POST = 5;
+	private final int MODIFY_POST = 6;
+	private final int DELETE_POST = 7;
 	
 	private final int ADMIN = 0;
 	
@@ -72,6 +74,14 @@ public class Board {
 		}
 		
 		map.put(user, new ArrayList<Post>());
+		System.out.println(user);
+		System.out.println(map);
+	}
+	
+	private void leave() {
+		String password = inputString("비밀번호 입력");
+		
+		userManager.deleteUser(log, password);
 	}
 	
 	private void selectMenu() {
@@ -81,7 +91,9 @@ public class Board {
 			createUser();
 		}else if(sel == LEAVE) {
 			leave();
-		}else if(sel == CREATE_POST) {
+		}else if(sel == LOG_IN) {
+			
+		}else if(sel == LOG_OUT) {
 			
 		}else if(sel == MODIFY_POST) {
 			
@@ -93,9 +105,11 @@ public class Board {
 	private void printMenu() {
 		System.out.println("1.회원가입");
 		System.out.println("2.탈퇴");
-		System.out.println("3.글작성");
-		System.out.println("4.글수정");
-		System.out.println("5.글삭제");
+		System.out.println("3.로그인");
+		System.out.println("4.로그아웃");
+		System.out.println("5.글작성");
+		System.out.println("6.글수정");
+		System.out.println("7.글삭제");
 	}
 	
 	public void run() {
