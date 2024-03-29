@@ -15,7 +15,9 @@ public class PostManager {
 		return instance;
 	}
 	
-	private void printPost() {
+	public void printPost(User user) {
+		posts = Board.map.get(user);
+		
 		for(int i=0; i<posts.size(); i++) {
 			Post post = posts.get(i);
 			System.out.printf("%s. %s \n", i+1 , post.getName());
@@ -29,7 +31,6 @@ public class PostManager {
 	public void readPost(User user) {
 		posts = Board.map.get(user);
 		
-		printPost();
 	}
 	
 	public void updatePost(User user, Post post, int index) {
