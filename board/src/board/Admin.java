@@ -1,9 +1,15 @@
 package board;
 
-public class Admin extends Person{
+public class Admin extends User{
 
-	public Admin(String name, String id, String password) {
-		super("관리자", "admin", "1234");
+	private Admin() {
+		super("admin", "admin", "1234");
+	}
+	
+	private static Admin instance = new Admin();
+	
+	public static Admin getInstance() {
+		return instance;
 	}
 
 }
