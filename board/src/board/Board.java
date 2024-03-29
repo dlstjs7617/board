@@ -14,6 +14,7 @@ public class Board {
 	private final int MODIFY_POST = 4;
 	private final int DELETE_POST = 5;
 	
+	private final int ADMIN = 0;
 	
 	private Scanner sc;
 	private Random ran;
@@ -21,6 +22,8 @@ public class Board {
 	private UserManager userManager;
 	private PostManager postManager;
 	private Admin admin = Admin.getInstance();
+	
+	private int log;
 	
 	public Map<User, ArrayList<Post>> map;
 	
@@ -32,6 +35,7 @@ public class Board {
 		postManager = PostManager.getInstance();
 		admin = Admin.getInstance();
 		map.put(admin, new ArrayList<Post>());
+		log = -1;
 	}
 	
 	private String inputString(String message) {
@@ -68,7 +72,6 @@ public class Board {
 		}
 		
 		map.put(user, new ArrayList<Post>());
-		
 	}
 	
 	private void selectMenu() {
@@ -77,7 +80,7 @@ public class Board {
 		if(sel == SIGN_UP) {
 			createUser();
 		}else if(sel == LEAVE) {
-			
+			leave();
 		}else if(sel == CREATE_POST) {
 			
 		}else if(sel == MODIFY_POST) {
