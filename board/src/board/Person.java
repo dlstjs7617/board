@@ -11,4 +11,17 @@ public abstract class Person {
 		this.id = id;
 		this.password = password;
 	}
+	
+	public String getId() {
+		return this.id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+	
 }
