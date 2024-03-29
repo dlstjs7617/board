@@ -21,7 +21,7 @@ public class Board {
 	private UserManager userManager;
 	private PostManager postManager;
 	
-	public static Map<User, ArrayList<Post>> map;
+	public Map<User, ArrayList<Post>> map;
 	
 	public Board() {
 		sc = new Scanner(System.in);
@@ -64,7 +64,7 @@ public class Board {
 			return;
 		}
 		
-		map.put(user, null);
+		map.put(user, new ArrayList<Post>());
 		
 	}
 	
@@ -85,7 +85,7 @@ public class Board {
 	}
 	
 	private void printMenu() {
-		System.out.println("1.회원코드 발행");
+		System.out.println("1.회원가입");
 		System.out.println("2.탈퇴");
 		System.out.println("3.글작성");
 		System.out.println("4.글수정");
