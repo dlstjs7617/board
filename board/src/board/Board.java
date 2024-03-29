@@ -159,7 +159,7 @@ public class Board {
 		User user = userManager.readUser(log);
 		postManager.printPost(user);
 		
-		int idx = inputNumber("수정할 글번호 선택")-1;
+		int idx = inputNumber("삭제할 글번호 선택")-1;
 		if(idx < 0 || idx >= postManager.getPostsSize()) {
 			System.err.println("유효하지 않은 선택입니다");
 			return;
