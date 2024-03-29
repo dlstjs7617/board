@@ -46,6 +46,10 @@ public class UserManager {
 		return user;
 	}
 	
+	public User readUser(int log) {
+		return userList.get(log);
+	}
+	
 	public boolean deleteUser(int log, String password) {
 		if(userList.get(log).getPassword().equals(password)) {
 			User user = userList.get(log);
