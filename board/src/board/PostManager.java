@@ -40,4 +40,8 @@ public class PostManager {
 	public void updatePost(User user, Post post, int index) {
 		Board.map.get(user).set(index, post);
 	}
+	
+	public void deletePost(User user, int idx) {
+		Board.map.get(user).remove(idx);
+	}
 }
