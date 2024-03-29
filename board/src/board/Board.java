@@ -97,6 +97,10 @@ public class Board {
 		}
 	}
 	
+	private void logout() {
+		log = -1;
+	}
+	
 	private void selectMenu() {
 		int sel = inputNumber("선택");
 		
@@ -107,7 +111,7 @@ public class Board {
 		}else if(sel == LOG_IN) {
 			login();
 		}else if(sel == LOG_OUT) {
-			
+			logout();
 		}else if(sel == MODIFY_POST) {
 			
 		}else if(sel == DELETE_POST) {
