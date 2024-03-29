@@ -155,6 +155,13 @@ public class Board {
 		postManager.deletePost(user, idx);
 	}
 	
+	private void printAdminMenu() {
+		System.out.println("1.유저 추방");
+		System.out.println("2.공지사항 작성");
+		System.out.println("3.게시글 삭제");
+		System.out.println("4.로그아웃");
+	}
+	
 	private void selectMenu() {
 		int sel = inputNumber("선택");
 		
@@ -163,7 +170,7 @@ public class Board {
 		}else if(sel == LOG_IN) {
 			login();
 		}
-		if(log != -1) {	
+		if(log != -1 || log != ADMIN) {	
 			if(sel == LEAVE) {
 				leave();
 			}else if(sel == LOG_OUT) {
@@ -175,19 +182,25 @@ public class Board {
 			}else if(sel == DELETE_POST) {
 				deletePost();
 			}
-		}		
+		}
+		
+		if(log == ADMIN) {
+			printAdminMenu();
+			seleteAdminMenu();
+		}
 		
 	}
 	
 	private void printMenu() {
 		System.out.println("1.회원가입");
 		System.out.println("3.로그인");
-		if(log != -1) {			
+		System.out.println("8.전체글조회");
+		if(log != -1 && log != ADMIN) {			
 			System.out.println("2.탈퇴");
 			System.out.println("4.로그아웃");
-			System.out.println("5.글작성");
-			System.out.println("6.글수정");
-			System.out.println("7.글삭제");
+			System.out.println("5.게시글 작성");
+			System.out.println("6.게시글 수정");
+			System.out.println("7.게시글 삭제");
 		}
 	}
 	
@@ -198,6 +211,5 @@ public class Board {
 
 		}
 	}
-	
 	
 }
