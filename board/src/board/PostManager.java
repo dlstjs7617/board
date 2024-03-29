@@ -15,6 +15,10 @@ public class PostManager {
 		return instance;
 	}
 	
+	public int getPostsSize() {
+		return posts.size();
+	}
+	
 	public void printPost(User user) {
 		posts = Board.map.get(user);
 		
