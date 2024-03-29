@@ -17,6 +17,11 @@ public class Board {
 	private final int MODIFY_POST = 6;
 	private final int DELETE_POST = 7;
 	
+	private final int DELETE_USER = 1;
+	private final int CREATE_NOTICE = 2;
+	private final int DELETE_ADMIN_POST = 3;
+	private final int LOG_OUT_ADMIN = 4;
+	
 	private final int ADMIN = 0;
 	
 	private Scanner sc;
@@ -160,6 +165,20 @@ public class Board {
 		System.out.println("2.공지사항 작성");
 		System.out.println("3.게시글 삭제");
 		System.out.println("4.로그아웃");
+	}
+	
+	private void seleteAdminMenu() {
+		int sel = inputNumber("선택 :");
+		
+		if(sel == DELETE_USER) {
+			
+		}else if(sel == CREATE_NOTICE) {
+			
+		}else if(sel == DELETE_ADMIN_POST) {
+			
+		}else if(sel == LOG_OUT_ADMIN) {
+			
+		}
 	}
 	
 	private void selectMenu() {
