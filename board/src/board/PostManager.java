@@ -24,7 +24,7 @@ public class PostManager {
 		
 		for(int i=0; i<posts.size(); i++) {
 			Post post = posts.get(i);
-			System.out.printf("%s. %s \n", i+1 , post.getName());
+			System.out.printf("%s. %s \n", i+1 , post.getTitle());
 		}
 	}
 	
