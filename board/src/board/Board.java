@@ -101,32 +101,65 @@ public class Board {
 		log = -1;
 	}
 	
+	private Post writePost(String name) {
+		sc.nextLine();
+		String title = sc.next();
+		
+		boolean write = true;
+		String content = "";
+		while(write) {
+			String temp = sc.nextLine();
+			
+			if(temp.equals("`"))
+				break;
+			
+			content += temp +"\n";
+		}
+		Post post = new Post(title, content, name);
+		return post;
+	}
+	
+	private void createPost() {
+		User user = userManager.readUser(log);
+		String name =user.getName();
+		
+		postManager.createPost(user, writePost(name));
+	}
+	
 	private void selectMenu() {
 		int sel = inputNumber("선택");
 		
 		if(sel == SIGN_UP) {
 			createUser();
-		}else if(sel == LEAVE) {
-			leave();
 		}else if(sel == LOG_IN) {
 			login();
-		}else if(sel == LOG_OUT) {
-			logout();
-		}else if(sel == MODIFY_POST) {
-			
-		}else if(sel == DELETE_POST) {
-			
 		}
+		if(log != -1) {	
+			if(sel == LEAVE) {
+				leave();
+			}else if(sel == LOG_OUT) {
+				logout();
+			}else if(sel == CREATE_POST) {
+				createPost();
+			}else if(sel == MODIFY_POST) {
+				
+			}else if(sel == DELETE_POST) {
+				
+			}
+		}		
+		
 	}
 	
 	private void printMenu() {
 		System.out.println("1.회원가입");
-		System.out.println("2.탈퇴");
 		System.out.println("3.로그인");
-		System.out.println("4.로그아웃");
-		System.out.println("5.글작성");
-		System.out.println("6.글수정");
-		System.out.println("7.글삭제");
+		if(log != -1) {			
+			System.out.println("2.탈퇴");
+			System.out.println("4.로그아웃");
+			System.out.println("5.글작성");
+			System.out.println("6.글수정");
+			System.out.println("7.글삭제");
+		}
 	}
 	
 	public void run() {
