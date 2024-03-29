@@ -139,7 +139,20 @@ public class Board {
 		
 		Post post = writePost(user.getName());
 		
-		postManager.updatePost(user, post, idx);;
+		postManager.updatePost(user, post, idx);
+	}
+	
+	private void deletePost() {
+		User user = userManager.readUser(log);
+		postManager.printPost(user);
+		
+		int idx = inputNumber("수정할 글번호 선택")-1;
+		if(idx < 0 || idx >= postManager.getPostsSize()) {
+			System.err.println("유효하지 않은 선택입니다");
+			return;
+		}
+		
+		postManager.deletePost(user, idx);
 	}
 	
 	private void selectMenu() {
@@ -160,7 +173,7 @@ public class Board {
 			}else if(sel == MODIFY_POST) {
 				modifyPost();
 			}else if(sel == DELETE_POST) {
-				
+				deletePost();
 			}
 		}		
 		
