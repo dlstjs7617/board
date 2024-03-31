@@ -3,7 +3,6 @@ package board;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.Scanner;
 
 
@@ -27,12 +26,11 @@ public class Board {
 	private final int ADMIN = 0;
 	
 	private Scanner sc;
-	private Random ran;
 	
 	private UserManager userManager;
 	private PostManager postManager;
 	private Admin admin;
-	private ArrayList<Post> allPost;
+	private AllPost allPost;
 	
 	private int log;
 	
@@ -40,7 +38,6 @@ public class Board {
 	
 	public Board() {
 		sc = new Scanner(System.in);
-		ran = new Random();
 		map = new HashMap<>();
 		userManager = UserManager.getInstance();
 		postManager = PostManager.getInstance();
@@ -134,7 +131,7 @@ public class Board {
 		String name =user.getName();
 		Post post = writePost(name);
 		
-		allPost.add(post);
+		allPost.createPost(post);
 		postManager.createPost(user, post);
 	}
 	
@@ -150,7 +147,7 @@ public class Board {
 		
 		Post post = writePost(user.getName());
 		
-		allPost.add(post);
+		allPost.createPost(post);
 		
 		postManager.updatePost(user, post, idx);
 	}
@@ -165,7 +162,7 @@ public class Board {
 			return;
 		}
 		
-		allPost.remove(postManager.readPost(user, idx));
+		allPost.deletePost(postManager.readPost(user, idx));
 		postManager.deletePost(user, idx);
 	}
 	
@@ -200,7 +197,7 @@ public class Board {
 			
 			System.out.println("===============");
 			for(int i=start; i<end; i++) {
-				System.out.println(i+1+". " + allPost.get(i).getTitle());
+				System.out.println(i+1+". " + allPost.readPost(i).getTitle());
 			}
 			System.out.println("현재 "+page+"페이지");
 			System.out.println("===============");
@@ -212,6 +209,20 @@ public class Board {
 			
 			page = selectPage(page, sel,end);
 		}
+	}
+	
+	private void deleteAdminPost() {
+		allPost.printPost();
+		
+		int idx = inputNumber("번호선택")-1;
+		
+		if(idx < 0 || idx >= allPost.size()) {
+			System.err.println("유효하지 않은 인덱스");
+			return;
+		}
+		Post post = allPost.readPost(idx);
+		
+		allPost.deletePost(post);
 	}
 	
 	private void printAdminMenu() {
@@ -229,7 +240,7 @@ public class Board {
 		}else if(sel == CREATE_NOTICE) {
 			
 		}else if(sel == DELETE_ADMIN_POST) {
-			
+			deleteAdminPost();
 		}else if(sel == LOG_OUT_ADMIN) {
 			logout();
 		}
