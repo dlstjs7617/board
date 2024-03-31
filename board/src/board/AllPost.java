@@ -9,4 +9,8 @@ public class AllPost {
 		return post;
 	}
 	
+	
+	public Post readPost(int idx){		
+		return post.get(idx);
+	}
 }
