@@ -13,4 +13,11 @@ public class AllPost {
 	public Post readPost(int idx){		
 		return post.get(idx);
 	}
+	
+	public void printPost() {
+		for(int i=0; i<post.size(); i++) {
+			Post temp = post.get(i);
+			System.out.println(i+1 +". 제목:" + temp.getTitle() + "\n작성자 : " + temp.getName());			
+		}
+	}
 }
