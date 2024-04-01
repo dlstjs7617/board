@@ -24,4 +24,8 @@ public abstract class Person {
 		return password;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("이름 :%s 아이디 : %s 비밀번호 %s", name, id, password);
+	}
 }

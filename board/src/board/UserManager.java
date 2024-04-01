@@ -1,6 +1,7 @@
 package board;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class UserManager {
 	ArrayList<User> userList;
@@ -24,6 +25,10 @@ public class UserManager {
 		return false;
 	}
 	
+	public int size() {
+		return userList.size();
+	}
+	
 	public int login(String id, String password) {
 		for(int i=0; i<userList.size(); i++) {
 			User user = userList.get(i);
@@ -32,6 +37,13 @@ public class UserManager {
 			}
 		}
 		return -1;
+	}
+	
+	public void printAllUser() {
+		for(int i=0; i<userList.size(); i++) {
+			User user = userList.get(i);
+			System.out.println(i+1 +". "+ user);
+		}
 	}
 	
 	public User createUser(String name, String id, String password) {
@@ -50,9 +62,26 @@ public class UserManager {
 		return userList.get(log);
 	}
 	
+	public User readUser(Post post) {
+		for(int i=0; i<Board.map.size(); i++) {
+			if(userList.get(i).getName().equals(post.getName())) {
+				return userList.get(i);
+			}
+		}
+		
+		return null;
+	}
+	
+	public void deleteUser(int log) {
+			Board.map.remove(log);
+			userList.remove(log);
+	}
+	
+	
 	public boolean deleteUser(int log, String password) {
 		if(userList.get(log).getPassword().equals(password)) {
 			User user = userList.get(log);
+			AllPost.getInstance().deleteUserPost(user);
 			Board.map.remove(user);
 			userList.remove(log);
 			return true;

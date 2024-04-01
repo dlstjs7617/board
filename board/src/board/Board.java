@@ -19,9 +19,8 @@ public class Board {
 	
 	
 	private final int DELETE_USER = 1;
-	private final int CREATE_NOTICE = 2;
-	private final int DELETE_ADMIN_POST = 3;
-	private final int LOG_OUT_ADMIN = 4;
+	private final int DELETE_ADMIN_POST = 2;
+	private final int LOG_OUT_ADMIN = 3;
 	
 	private final int ADMIN = 0;
 	
@@ -167,16 +166,17 @@ public class Board {
 	}
 	
 	private void printPage() {
-		System.out.println("1.전페이지 2.앞페이지 3.나가기");
+		System.out.println("보실려는 글번호 입력:");
+		System.out.println("a.앞페이지 s.뒤페이지 d.나가기");
 	}
 	
-	private int selectPage(int page, int select, int end) {
-		if(select == 1) {
+	private int selectPage(int page, String select, int end) {
+		if(select.equals("a")) {
 			if(page == 1)
 				return page;
 			else
 				return page-1;
-		}else if(select == 2) {
+		}else if(select.equals("s")) {
 			if(end == allPost.size())
 				return page;
 			else
@@ -203,11 +203,17 @@ public class Board {
 			System.out.println("===============");
 
 			printPage();
-			int sel = inputNumber("선택");
-			if(sel == 3)
+			String sel = inputString("선택");
+			if(sel == "d")
 				break;
 			
-			page = selectPage(page, sel,end);
+			try {
+				int idx = Integer.parseInt(sel)-1;
+				allPost.printPostContent(idx);
+			} catch (Exception e) {
+				page = selectPage(page, sel, end);
+			}
+			
 		}
 	}
 	
@@ -222,23 +228,41 @@ public class Board {
 		}
 		Post post = allPost.readPost(idx);
 		
+		User user = userManager.readUser(post);
+		postManager.deletePost(user, post);
 		allPost.deletePost(post);
+	}
+	
+	private void deleteUser() {
+		userManager.printAllUser();
+		int idx = inputNumber("추방할 유저번호 입력")-1;
+		
+		if(idx < 0 || idx >= userManager.size()) {
+			System.err.println("유효하지 않은 인덱스");
+			return;
+		}
+		
+		if(idx == 0) {
+			System.err.println("관리자 계정입니다");
+			return;
+		}
+		User user = userManager.readUser(idx);
+		allPost.deleteUserPost(user);
+		userManager.deleteUser(idx);
+		
 	}
 	
 	private void printAdminMenu() {
 		System.out.println("1.유저 추방");
-		System.out.println("2.공지사항 작성");
-		System.out.println("3.게시글 삭제");
-		System.out.println("4.로그아웃");
+		System.out.println("2.게시글 삭제");
+		System.out.println("3.로그아웃");
 	}
 	
 	private void seleteAdminMenu() {
 		int sel = inputNumber("선택 :");
 		
 		if(sel == DELETE_USER) {
-			
-		}else if(sel == CREATE_NOTICE) {
-			
+			deleteUser();
 		}else if(sel == DELETE_ADMIN_POST) {
 			deleteAdminPost();
 		}else if(sel == LOG_OUT_ADMIN) {

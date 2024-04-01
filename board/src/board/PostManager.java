@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PostManager {	
 	
-	private ArrayList<Post> posts;
+	private static ArrayList<Post> posts;
 	
 	private PostManager() {
 	}
@@ -41,8 +41,12 @@ public class PostManager {
 	public void updatePost(User user, Post post, int index) {
 		Board.map.get(user).set(index, post);
 	}
-	
+		
 	public void deletePost(User user, int idx) {
 		Board.map.get(user).remove(idx);
+	}
+	
+	public void deletePost(User user, Post post) {
+		Board.map.get(user).remove(post);
 	}
 }
